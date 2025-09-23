@@ -3,7 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteca {
-    private List<Livro> acervo;
+    private final List<Livro> acervo;
+    private final int ANO_PUBLICACAO_MINIMO = 1900;
 
     public Biblioteca() {
         this.acervo = new ArrayList<>();
@@ -22,7 +23,7 @@ public class Biblioteca {
         }
 
         int anoAtual = LocalDate.now().getYear();
-        if (livro.getAnoPublicacao() < 1900 || livro.getAnoPublicacao() > anoAtual) {
+        if (livro.getAnoPublicacao() < ANO_PUBLICACAO_MINIMO || livro.getAnoPublicacao() > anoAtual) {
             throw new Exception("Ano de publicação deve estar entre 1900 e " + anoAtual);
         }
 
@@ -33,8 +34,9 @@ public class Biblioteca {
         acervo.add(livro);
         return livro;
     }
-    public Livro removerPorIndice(int indice) throws Exception{
-        if (indice < 0 || indice >= acervo.size()){
+
+    public Livro removerPorIndice(int indice) throws Exception {
+        if (indice < 0 || indice >= acervo.size()) {
             throw new Exception("Índice inválido!");
         }
         return acervo.remove(indice);
@@ -43,7 +45,8 @@ public class Biblioteca {
     public List<Livro> pesquisar() {
         return acervo;
     }
-    public List<Livro> pesquisar(String titulo){
+
+    public List<Livro> pesquisar(String titulo) {
         return pesquisar(titulo, null);
     }
 
@@ -51,8 +54,8 @@ public class Biblioteca {
         List<Livro> livrosEncontrados = new ArrayList<>();
         for (Livro livro : acervo) {
             if (livro.getTitulo().toLowerCase().contains(titulo.toLowerCase())) {
-                if (autor ==  null || livro.getAutor().toLowerCase().contains(autor.toLowerCase()))
-                livrosEncontrados.add(livro);
+                if (autor == null || livro.getAutor().toLowerCase().contains(autor.toLowerCase()))
+                    livrosEncontrados.add(livro);
             }
         }
         return livrosEncontrados;

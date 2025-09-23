@@ -15,7 +15,21 @@ public class Input {
         }
     }
 
-    public static String scanString(String message, Scanner scan){
+    public static double scanDouble(String message, Scanner scan) {
+        while (true) {
+            try {
+                System.out.print(message);
+                double value = scan.nextDouble();
+                return value;
+            } catch (Exception e) {
+                System.out.println("Valor Inválido! Digite um número flutuante");
+            } finally {
+                scan.nextLine();
+            }
+        }
+    }
+
+    public static String scanString(String message, Scanner scan) {
         while (true) {
             System.out.print(message);
             String value = scan.nextLine();

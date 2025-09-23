@@ -1,10 +1,10 @@
-public class Livro {
+public abstract class Livro {
     private String titulo;
     private String autor;
     private int anoPublicacao;
     private int numeroPaginas;
 
-    public Livro(){
+    public Livro() {
     }
 
     public Livro(String titulo, String autor, int anoPublicacao, int numeroPaginas) {
@@ -14,27 +14,35 @@ public class Livro {
         this.numeroPaginas = numeroPaginas;
 
     }
+
     public String getTitulo() {
         return titulo;
     }
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
     public String getAutor() {
         return autor;
     }
+
     public void setAutor(String autor) {
         this.autor = autor;
     }
+
     public int getAnoPublicacao() {
         return anoPublicacao;
     }
+
     public void setAnoPublicacao(int anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
     }
+
     public int getNumeroPaginas() {
         return numeroPaginas;
     }
+
     public void setNumeroPaginas(int numeroPaginas) {
         this.numeroPaginas = numeroPaginas;
     }
@@ -44,4 +52,6 @@ public class Livro {
         return "titulo = " + titulo + ", autor = " + autor + ", anoPublicacao = " + anoPublicacao + ", numeroPaginas = "
                 + numeroPaginas;
     }
+
+    public abstract String getTipoLivro();
 }

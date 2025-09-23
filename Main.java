@@ -20,7 +20,7 @@ public class Main {
         do {
             opcao = Input.scanInt(menu + "Digite sua escolha: ", scan);
             switch (opcao) {
-                case 1: // CADASTRA VEÍCULO
+                case 1:
                     cadastrarLivro();
                     System.out.println("Pressione ENTER para continuar");
                     scan.nextLine();
@@ -54,18 +54,42 @@ public class Main {
         String titulo = Input.scanString("Digite o título do livro: ", scan);
         String autor = Input.scanString("Digite o autor do livro: ", scan);
         int anoPublicacao = Input.scanInt("Digite o ano de publicação do livro: ", scan);
-        int numeroPaginas = Input.scanInt("Digite o número de páginas do livro: ", scan);
+        
         List<Livro> acervo = biblioteca.pesquisar();
         for (Livro livro : acervo) {
-            if (livro.getTitulo().equalsIgnoreCase(titulo) && livro.getAutor().equalsIgnoreCase(autor) && livro.getAnoPublicacao() == anoPublicacao) {
+            if (livro.getTitulo().equalsIgnoreCase(titulo) && livro.getAutor().equalsIgnoreCase(autor)
+                    && livro.getAnoPublicacao() == anoPublicacao) {
                 System.out.println("Esse livro já esta cadastrado!");
                 return;
             }
         }
-        Livro novoLivro = new Livro(titulo, autor, anoPublicacao, numeroPaginas);
+        int numeroPaginas = Input.scanInt("Digite o número de páginas do livro: ", scan);
+        int formatoLivro = Input.scanInt("Digite o formato do livro: 1 - Livro físico, 2 - Livro digital: ", scan);
+
+        int numeroExemplares = 0;
+        String dimensoes = " ";
+        String formatoArquivo = " ";
+        double tamanhoArquivo = 0.0;
+
+        Livro novoLivro = null;
+
+        if (formatoLivro == 1){
+            numeroExemplares = Input.scanInt("Digite o número de exemplares que o livro vendeu: ", scan);
+            dimensoes = Input.scanString("Digite as dimensões que o livro possui: ", scan);
+            novoLivro = new LivroFisico(titulo, autor, anoPublicacao, numeroPaginas, numeroExemplares, dimensoes);
+        } else if (formatoLivro == 2) {
+            formatoArquivo = Input.scanString("Digite o formato do arquivo (PDF, txt, etc): ", scan);
+            tamanhoArquivo = Input.scanDouble("Digite o tamanho do arquivo: ", scan);
+            novoLivro = new LivroDigital(titulo, autor, anoPublicacao, numeroPaginas, formatoArquivo, tamanhoArquivo);
+        }
+
         try {
             biblioteca.adicionar(novoLivro);
-            System.out.println("Livro adiconado com sucesso");
+            if (novoLivro instanceof LivroFisico){
+                System.out.println("Livro físico adiconado com sucesso");
+            } else {
+                System.out.println("Livro digital adiconado com sucesso");
+            }
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
@@ -74,7 +98,7 @@ public class Main {
     private static void listarAcervo() {
         var acervo = biblioteca.pesquisar(); // MESMA COISA QUE USAR: List<Livro> acervo = biblioteca.pesquisar();
         int tamanho = acervo.size();
-        System.out.println("Quantidade de livros: "+ tamanho);
+        System.out.println("Quantidade de livros: " + tamanho);
         System.out.println("Livros cadastrados: ");
         for (int i = 0; i < acervo.size(); i++) {
             System.out.println("Livro " + i + 1 + ":" + acervo.get(i));
