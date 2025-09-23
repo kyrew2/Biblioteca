@@ -101,13 +101,14 @@ public class Main {
         System.out.println("Quantidade de livros: " + tamanho);
         System.out.println("Livros cadastrados: ");
         for (int i = 0; i < acervo.size(); i++) {
-            System.out.println("Livro " + i + 1 + ":" + acervo.get(i));
+            System.out.println("Livro " + (i + 1) + ": " + acervo.get(i));
         }
     }
 
     private static void pesquisarLivro() {
+        String pesquisaAutor = Input.scanString("Digite S para pesquisar por autor ou N para pesquisar por titulo: ", scan);
         String titulo = Input.scanString("Digite o titulo que procura: ", scan);
-        String pesquisaAutor = Input.scanString("Deseja pesquisar por autor? S/N", scan);
+
         List<Livro> livros;
         if (pesquisaAutor.toLowerCase().charAt(0) == 's') {
             String autor = Input.scanString("Digite o nome do autor: ", scan);
@@ -120,7 +121,7 @@ public class Main {
 
     private static void imprimirLista(List<Livro> acervo) {
         if (acervo == null || acervo.isEmpty()) {
-            System.out.println("Nenhum livro encontrados");
+            System.out.println("Nenhum livro encontrado");
         } else {
             System.out.println("Livros Encontrados: ");
             for (int i = 0; i < acervo.size(); i++) {
@@ -136,7 +137,7 @@ public class Main {
             return;
         }
         listarAcervo();
-        int indice = Input.scanInt("Digite o índice do livro que deseja remover", scan);
+        int indice = Input.scanInt("Digite o índice do livro que deseja remover: ", scan);
         try {
             Livro removido = biblioteca.removerPorIndice(indice);
             System.out.println("Livro removido: " + removido);

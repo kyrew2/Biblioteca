@@ -6,12 +6,9 @@ public final class LivroDigital extends Livro {
 
     }
 
-    public LivroDigital(String titulo, String autor, int anoPublicacao, int numeroPaginas, String formatoArquivo, double tamanhoArquivo) {
-        // super(titulo, autor, anoPublicacao, numeroPaginas);
-        this.setTitulo(titulo);
-        this.setAutor(autor);
-        this.setAnoPublicacao(anoPublicacao);
-        this.setNumeroPaginas(numeroPaginas);
+    public LivroDigital(String titulo, String autor, int anoPublicacao, int numeroPaginas, String formatoArquivo,
+            double tamanhoArquivo) {
+        super(titulo, autor, anoPublicacao, numeroPaginas);
         this.formatoArquivo = formatoArquivo;
         this.tamanhoArquivo = tamanhoArquivo;
     }
@@ -34,6 +31,19 @@ public final class LivroDigital extends Livro {
 
     @Override
     public String getTipoLivro() {
-        return "Livro Digitial";
+        return "Livro digital";
+    }
+
+    @Override
+    public String toString() {
+        String dadosLivro =
+                "Tipo de Livro = " + this.getTipoLivro() +
+                ", Titulo = " + this.getTitulo() +
+                ", Autor = " + this.getAutor() +
+                ", Ano de Publicação = " + this.getAnoPublicacao() +
+                ", Número de Páginas = " + this.getNumeroPaginas() +
+                ", Formato do Arquivo = " + this.getFormatoArquivo() +
+                ", Tamanho do Arquivo = " + this.getTamanhoArquivo();
+        return dadosLivro;
     }
 }

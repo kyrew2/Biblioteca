@@ -49,7 +49,7 @@ public abstract class Livro {
 
     @Override
     public String toString() {
-        return "titulo = " + titulo + ", autor = " + autor + ", anoPublicacao = " + anoPublicacao + ", numeroPaginas = "
+        return "Titulo = " + titulo + ", Autor = " + autor + ", Ano de Publicacao = " + anoPublicacao + ", Número de Paginas = "
                 + numeroPaginas;
     }
 
