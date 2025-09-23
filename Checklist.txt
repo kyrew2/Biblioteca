@@ -1,0 +1,83 @@
+Funcionalidades obrigatórias do menu
+As opções abaixo deverão estar implementadas no sistema final (todas elas já foram trabalhadas em aula ou como desafio):
+
+---
+---
+---
+---
+
+Adicionar Livro: [X]
+
+Perguntar ao usuário se deseja cadastrar um livro físico ou digital.
+
+Solicitar as informações necessárias de acordo com o tipo de livro.
+
+Aplicar validações (ex.: título/autor obrigatórios, ano ≥ ANO_PUBLICACAO_MINIMO).
+
+---
+---
+---
+
+Listar Acervo: [X] (Todas as características do livro são listadas junto, inclusive o tipo/formato do livro e suas vertentes)
+
+Exibir todos os livros cadastrados.
+
+Mostrar o formato (Digital ou Físico) usando polimorfismo e getFormato().
+
+---
+---
+---
+
+Pesquisar Livro: [X]	(Livros podem ser pesquisados tanto por título quanto por autor, basta escolher a opção)
+
+Pesquisar por título.
+
+Opcionalmente, pesquisar também por autor.
+
+---
+---
+---
+
+Remover Livro: [X] (Remove por índice)
+
+Remover um livro do acervo (por índice ou outro identificador).
+
+---
+---
+---
+
+Atualizar Livro: [ ]
+
+Permitir que os dados de um livro já cadastrado sejam alterados.
+
+---
+---
+---
+
+Contagem de Livros: [X]   (A quantidade de livros cadastrados consta junto com a listagem)
+
+Mostrar a quantidade total de livros no acervo.
+
+---
+---
+---
+
+Evitar Duplicidade: [X]
+
+Não permitir cadastrar dois livros com o mesmo título + autor + ano.
+
+---
+---
+---
+
+Pesquisar por Ano: [ ]
+
+Pesquisar livros em um intervalo de anos (ex.: de 2000 até 2010).
+
+---
+---
+---
+
+Livro mais antigo e mais novo: [ ]
+
+Mostrar o livro mais antigo e o mais novo do acervo.
