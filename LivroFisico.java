@@ -2,8 +2,11 @@ public final class LivroFisico extends Livro {
     private int numeroExemplares;
     private String dimensoes;
 
-    public LivroFisico(String titulo, String autor, int anoPublicacao, int numeroPaginas, int numeroExemplares,
-            String dimensoes) {
+    public LivroFisico() {
+
+    }
+
+    public LivroFisico(String titulo, String autor, int anoPublicacao, int numeroPaginas, int numeroExemplares, String dimensoes) {
         super(titulo, autor, anoPublicacao, numeroPaginas);
         this.numeroExemplares = numeroExemplares;
         this.dimensoes = dimensoes;

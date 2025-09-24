@@ -46,7 +46,7 @@ Remover um livro do acervo (por índice ou outro identificador).
 ---
 ---
 
-Atualizar Livro: [ ]
+Atualizar Livro: [X] 
 
 Permitir que os dados de um livro já cadastrado sejam alterados.
 
@@ -70,7 +70,7 @@ Não permitir cadastrar dois livros com o mesmo título + autor + ano.
 ---
 ---
 
-Pesquisar por Ano: [ ]
+Pesquisar por Ano: [X]
 
 Pesquisar livros em um intervalo de anos (ex.: de 2000 até 2010).
 
@@ -78,6 +78,6 @@ Pesquisar livros em um intervalo de anos (ex.: de 2000 até 2010).
 ---
 ---
 
-Livro mais antigo e mais novo: [ ]
+Livro mais antigo e mais novo: [X]
 
 Mostrar o livro mais antigo e o mais novo do acervo.
