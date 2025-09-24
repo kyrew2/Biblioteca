@@ -17,9 +17,13 @@ public class Biblioteca {
             throw new Exception("Livro não pode ser nulo!");
         }
 
+        if (livro.getTitulo() == null || livro.getTitulo().isEmpty()) {
+            throw new Exception("Título não pode ser em branco");
+        }
+
         livro.setAutor(livro.getAutor().trim());
 
-        if (livro.getTitulo() == null || livro.getTitulo().isEmpty()) {
+        if (livro.getAutor() == null || livro.getAutor().isEmpty()) {
             throw new Exception("Autor não pode ser em branco");
         }
 
@@ -41,7 +45,8 @@ public class Biblioteca {
         }
         return acervo.remove(indice);
     }
-        public Livro buscaPorIndice(int indice) throws Exception {
+
+    public Livro buscaPorIndice(int indice) throws Exception {
         if (indice < 0 || indice >= acervo.size()) {
             throw new Exception("Índice inválido!");
         }
@@ -53,8 +58,24 @@ public class Biblioteca {
     }
 
     public List<Livro> pesquisar(String titulo) {
-        return pesquisar(titulo);
+        List<Livro> livrosEncontrados = new ArrayList<>();
+        for (Livro livro : acervo) {
+            if (livro.getTitulo().toLowerCase().contains(titulo.toLowerCase())) {
+                livrosEncontrados.add(livro);
+            }
+        }
+        return livrosEncontrados;
     }
+        public List<Livro> pesquisarPorAutor(String autor) {
+        List<Livro> livrosEncontrados = new ArrayList<>();
+        for (Livro livro : acervo) {
+            if (livro.getAutor().toLowerCase().contains(autor.toLowerCase())) {
+                livrosEncontrados.add(livro);
+            }
+        }
+        return livrosEncontrados;
+    }
+
     public List<Livro> pesquisar(int anoInicial, int anoFinal) {
         List<Livro> livrosEncontrados = new ArrayList<>();
         for (Livro livro : acervo) {
@@ -69,8 +90,10 @@ public class Biblioteca {
         List<Livro> livrosEncontrados = new ArrayList<>();
         for (Livro livro : acervo) {
             if (livro.getTitulo().toLowerCase().contains(titulo.toLowerCase())) {
-                if (autor == null || livro.getAutor().toLowerCase().contains(autor.toLowerCase()))
+                if (autor == null || autor.trim().isEmpty()
+                        || livro.getAutor().toLowerCase().contains(autor.toLowerCase())) {
                     livrosEncontrados.add(livro);
+                }
             }
         }
         return livrosEncontrados;

@@ -126,13 +126,13 @@ public class Main {
     private static void pesquisarLivro() {
         String pesquisaAutor = Input.scanString("Digite S para pesquisar por autor ou N para pesquisar por titulo: ",
                 scan);
-        String titulo = Input.scanString("Digite o titulo que procura: ", scan);
 
         List<Livro> livros;
         if (pesquisaAutor.toLowerCase().charAt(0) == 's') {
             String autor = Input.scanString("Digite o nome do autor: ", scan);
-            livros = biblioteca.pesquisar(titulo, autor);
+            livros = biblioteca.pesquisarPorAutor(autor);
         } else {
+            String titulo = Input.scanString("Digite o titulo que procura: ", scan);
             livros = biblioteca.pesquisar(titulo);
         }
         imprimirLista(livros);
@@ -158,6 +158,10 @@ public class Main {
 
     private static void livroMaisAntigoEMaisNovo() {
         var acervo = biblioteca.pesquisar();
+        if (acervo.isEmpty()) {
+            System.out.println("Nenhum livro cadastrado para encontrar o mais antigo e o mais novo!");
+            return;
+        }
         Livro livroMaisAntigo = acervo.get(0);
         Livro livroMaisNovo = acervo.get(0);
         for (Livro livro : acervo) {
@@ -180,32 +184,36 @@ public class Main {
         }
         listarAcervo();
         int indice = Input.scanInt("Digite o índice do livro que deseja atualizar: ", scan);
-        Livro livro = acervo.get(indice);
-        int opcao = Input.scanInt("""
-                Digite:
-                1 - Atualizar titulo;
-                2 - Atualizar autor;
-                3 - Atualizar ano de publicacao;
-                4 - Atualizar numero de paginas;
+        try {
+            Livro livro = acervo.get(indice);
+            int opcao = Input.scanInt("""
+                    Digite:
+                    1 - Atualizar titulo;
+                    2 - Atualizar autor;
+                    3 - Atualizar ano de publicacao;
+                    4 - Atualizar numero de paginas;
 
-                """, scan);
-        switch (opcao) {
-            case 1:
-                livro.setTitulo(Input.scanString("Digite o novo titulo: ", scan));
-                break;
-            case 2:
-                livro.setAutor(Input.scanString("Digite o novo autor: ", scan));
-                break;
-            case 3:
-                livro.setAnoPublicacao(Input.scanInt("Digite o novo ano de publicacao: ", scan));
-                break;
-            case 4:
-                livro.setNumeroPaginas(Input.scanInt("Digite o novo numero de paginas: ", scan));
-                break;
-            default:
-                System.out.println("Opcao invalida!");
-                break;
-            
+                    """, scan);
+            switch (opcao) {
+                case 1:
+                    livro.setTitulo(Input.scanString("Digite o novo titulo: ", scan));
+                    break;
+                case 2:
+                    livro.setAutor(Input.scanString("Digite o novo autor: ", scan));
+                    break;
+                case 3:
+                    livro.setAnoPublicacao(Input.scanInt("Digite o novo ano de publicacao: ", scan));
+                    break;
+                case 4:
+                    livro.setNumeroPaginas(Input.scanInt("Digite o novo numero de paginas: ", scan));
+                    break;
+                default:
+                    System.out.println("Opcao invalida!");
+                    break;
+            }
+            System.out.println("Livro atualizado com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro ao atualizar: " + e.getMessage());
         }
     }
 
